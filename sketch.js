@@ -11,8 +11,8 @@ function getRandomInt(min, max) {
 }
 
 function setup () {
-	createCanvas(600, 600);
-	board = new Board(600, 600, 3, 3);
+	createCanvas(w+10, h+10);
+	board = new Board(w, h, 3, 3);
 	board.addTile(0, 0, 2);
 	board.addTile(0, 2, 2);
 	board.addTile(1, 2, 4);
