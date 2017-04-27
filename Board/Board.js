@@ -112,6 +112,30 @@ function Board (w, h, x, y) {
 					this.grid[i][j] = undefined;
 				}
 			}
+
+			for (i = 0; i < this.x; i++) {
+				if (this.grid[i][j] === undefined) {
+					// Exit clause if there are no values in the row and move on.
+					continue;
+				}
+				else if( i < this.x-1 && this.grid[i][j] === this.grid[i+1][j]) {
+					values.push(this.grid[i][j] + this.grid[i+1][j]);
+					// Skip the value we just added to the current value.
+					i++;
+				}
+				else {
+					values.push(this.grid[i][j]);
+				}
+			}
+
+			for (i = this.x - 1; i >= 0; i--) {
+				if (values.length > 0) {
+					this.grid[i][j] = values.pop();
+				}
+				else {
+					this.grid[i][j] = undefined;
+				}
+			}
 		}
 	};
 
@@ -134,6 +158,32 @@ function Board (w, h, x, y) {
 					this.grid[i][j] = undefined;
 				}
 			}
+
+			// Check for touching equal values and sum these together.
+			for (j = this.y - 1; j >= 0; j--) {
+				if (this.grid[i][j] === undefined) {
+					// Exit clause if there are no values in the row and move on.
+					continue;
+				}
+				else if( j > 0 && this.grid[i][j] === this.grid[i][j-1]) {
+					values.push(this.grid[i][j] + this.grid[i][j-1]);
+					// Skip the value we just added to the current value.
+					j--;
+				}
+				else {
+					values.push(this.grid[i][j]);
+				}
+			}
+
+			for (j = 0; j < this.y; j++) {
+				if (values.length > 0) {
+					this.grid[i][j] = values.pop();
+				}
+				else {
+					this.grid[i][j] = undefined;
+				}
+			}
+
 		}
 	};
 
@@ -144,6 +194,30 @@ function Board (w, h, x, y) {
 			var values = [];
 			for (j = 0; j < this.y; j ++) {
 				if (this.grid[i][j] !== undefined) {
+					values.push(this.grid[i][j]);
+				}
+			}
+
+			for (j = this.y - 1; j >= 0; j--) {
+				if (values.length > 0) {
+					this.grid[i][j] = values.pop();
+				}
+				else {
+					this.grid[i][j] = undefined;
+				}
+			}
+
+			for (j = 0; j < this.y; j ++) {
+				if (this.grid[i][j] === undefined) {
+					// Exit clause if there are no values in the row and move on.
+					continue;
+				}
+				else if( j < this.y-1 && this.grid[i][j] === this.grid[i][j+1]) {
+					values.push(this.grid[i][j] + this.grid[i][j+1]);
+					// Skip the value we just added to the current value.
+					j++;
+				}
+				else {
 					values.push(this.grid[i][j]);
 				}
 			}

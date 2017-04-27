@@ -176,7 +176,6 @@ describe('Board tests', function() {
 		board.addTile(0, 1, 2);
 		board.addTile(1, 1, 2);
 
-
 		board.moveLeft();
 
 		expect(board.grid[0][1]).to.equal(4);
@@ -184,6 +183,53 @@ describe('Board tests', function() {
 		expect(board.grid[2][1]).to.equal(undefined);
 		expect(board.grid[3][1]).to.equal(undefined);
 		expect(board.grid[4][1]).to.equal(undefined);
+
+		done();
+	});
+
+	it('Should combine and sum touching tiles with the same value after moving RIGHT', function (done) {
+		board.addTile(0, 1, 2);
+		board.addTile(1, 1, 2);
+
+		board.moveRight();
+
+		expect(board.grid[0][1]).to.equal(undefined);
+		expect(board.grid[1][1]).to.equal(undefined);
+		expect(board.grid[2][1]).to.equal(undefined);
+		expect(board.grid[3][1]).to.equal(undefined);
+		expect(board.grid[4][1]).to.equal(4);
+
+		done();
+	});
+
+	it('Should combine and sum touching tiles with the same value after moving UP', function (done) {
+		board.addTile(0, 1, 6);
+		board.addTile(0, 4, 6);
+
+		board.moveUp();
+
+		expect(board.grid[0][0]).to.equal(12);
+		expect(board.grid[0][1]).to.equal(undefined);
+		expect(board.grid[0][2]).to.equal(undefined);
+		expect(board.grid[0][3]).to.equal(undefined);
+		expect(board.grid[0][4]).to.equal(undefined);
+		expect(board.grid[0][5]).to.equal(undefined);
+
+		done();
+	});
+
+	it('Should combine and sum touching tiles with the same value after moving DOWN', function (done) {
+		board.addTile(0, 1, 6);
+		board.addTile(0, 4, 6);
+
+		board.moveDown();
+
+		expect(board.grid[0][0]).to.equal(undefined);
+		expect(board.grid[0][1]).to.equal(undefined);
+		expect(board.grid[0][2]).to.equal(undefined);
+		expect(board.grid[0][3]).to.equal(undefined);
+		expect(board.grid[0][4]).to.equal(undefined);
+		expect(board.grid[0][5]).to.equal(12);
 
 		done();
 	});
