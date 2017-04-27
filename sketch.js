@@ -30,14 +30,22 @@ function draw () {
 function keyPressed () {
 	if (keyCode === RIGHT_ARROW) {
 		board.moveRight();
+		var pos = board.getEmptySquarePosition();
+		board.addTile(pos[0], pos[1], board.getMaxTileValue());
 	}
 	else if (keyCode === LEFT_ARROW) {
 		board.moveLeft();
+		var pos = board.getEmptySquarePosition();
+		board.addTile(pos[0], pos[1], board.getMaxTileValue());
 	}
 	else if (keyCode === UP_ARROW) {
 		board.moveUp();
+		var pos = board.getEmptySquarePosition();
+		board.addTile(pos[0], pos[1], board.getMaxTileValue());
 	}
 	else if (keyCode === DOWN_ARROW) {
 		board.moveDown();
+		var pos = board.getEmptySquarePosition();
+		board.addTile(pos[0], pos[1], board.getMaxTileValue());
 	}
 }

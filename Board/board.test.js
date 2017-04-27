@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 
 var Board = require('./Board.js').Board;
 
-describe('Board tests', function() {
+describe('Board General Tests', function() {
 
 	beforeEach(function() {
 		board = new Board(500, 600, 5, 6);
@@ -264,6 +264,69 @@ describe("moveUp public function", function() {
 		expect(board.grid[0][4]).to.equal(undefined);
 		expect(board.grid[0][5]).to.equal(12);
 
+		done();
+	});
+});
+
+describe('getEmptySquarePosition public function', function() {
+	beforeEach(function () {
+		board = new Board(500, 600, 5, 6);
+		board.addTile(0, 0, 2);
+		board.addTile(0, 2, 4);
+		board.addTile(1, 0, 2);
+	});
+
+	it('Should return an array object', function(done) {
+
+		var pos = board.getEmptySquarePosition();
+
+		expect(pos).to.be.instanceOf(Array);
+
+		done(); 
+	});
+
+	it('Should have values within the confines of the length/height of the board grid', function(done) {
+
+		var pos = board.getEmptySquarePosition();
+
+		expect(pos[0]).to.be.above(-1);
+		expect(pos[1]).to.be.above(-1);
+
+		expect(pos[0]).to.be.below(board.grid.length);
+		expect(pos[1]).to.be.below(board.grid.length);	
+
+		done();
+	});
+
+	it('Should return a tile position that is empty', function (done) {
+		var pos = board.getEmptySquarePosition();
+
+		expect(board.grid[pos[0]][pos[1]]).to.equal(undefined);
+
+		done();
+	});
+});
+
+describe('getMaxTileValue public function', function() {
+	beforeEach(function () {
+		board = new Board(500, 600, 5, 6);
+		board.addTile(0, 0, 2);
+		board.addTile(0, 2, 4);
+		board.addTile(1, 0, 8);
+	});
+
+	it('Should return a number value of at least 2 (the smallest valid number)', function(done) {
+		var value = board.getMaxTileValue();
+
+		expect(value).to.be.at.least(2);
+
+		done();
+	});
+
+	it('Should return the largest number in the grid.', function(done) {
+		
+		expect(board.getMaxTileValue()).to.equal(8);
+		
 		done();
 	});
 

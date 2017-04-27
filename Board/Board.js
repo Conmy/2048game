@@ -1,3 +1,13 @@
+var steps = {
+	2: "red",
+	4: "orange",
+	8: "yellow",
+	16: "green",
+	32: "blue",
+	64: "indigo",
+	128: "violet"
+};
+
 function Board (w, h, x, y) {
 	this.x = x;
 	this.y = y;
@@ -18,19 +28,24 @@ function Board (w, h, x, y) {
 		textSize(60);
 		for (var i = 0; i < this.x; i++) {
 			for (var j = 0; j < this.y; j++) {
-			
-				fill(220);
-				rect(this.tileWidth*i, this.tileHeight*j, this.tileWidth, this.tileHeight);
-				
 				if (this.getTile(i,j) !== undefined) {
+					fill(steps[this.grid[i][j]]);
+					rect(this.tileWidth*i, this.tileHeight*j, this.tileWidth, this.tileHeight);
 					textAlign(CENTER, CENTER);	
-					fill(10);
+					fill(20);
 					text(this.grid[i][j].toString(), i*this.tileWidth, j*this.tileHeight, this.tileWidth, this.tileHeight);
+				}
+				else{
+					fill(220);
+					rect(this.tileWidth*i, this.tileHeight*j, this.tileWidth, this.tileHeight);
 				}
 			}
 		}
 	};
 
+	this.getTileColorValue = function (value) {
+		return steps[value];
+	};
 
 	/**
 	 * Adds a new tile to the given position x, y.
@@ -236,5 +251,36 @@ function Board (w, h, x, y) {
 	this.getTile = function (x, y) {
 		return this.grid[x][y];
 	};
+
+	this.getEmptySquarePosition = function () {
+		var position = [0, 0];
+		var checkedVals = [];
+		var found = false;
+		while (!found) {
+			position[0] = Math.floor(Math.random() * (this.grid.length));
+			position[1] = Math.floor(Math.random() * (this.grid.length));
+
+			if (this.grid[position[0], position[1]] !== undefined) {
+				found = true;
+				return position;
+			}
+			else {
+				checkedVals.push(position);
+			}
+		}
+	};
+
+	this.getMaxTileValue = function() {
+		var max = 0;
+		for (var j=0; j<board.y; j++){
+			for (var i=0; i<board.x; i++) {
+				if (board.grid[i][j] > max) {
+					max = board.grid[i][j];
+				}
+			}
+		}
+
+		return max;
+	}
 }
 module.exports.Board = Board;
