@@ -51,13 +51,13 @@ describe("Tile methods", function() {
 		done();
 	});
 
-	it("Should be able to GET a tile from a given grid position", function(done) {
+	it("Should be able to GET a tile value from a given grid position", function(done) {
 
 		board.addTile(1, 2, 16);
 		board.addTile(0, 3, 4);
 
-		// Check that the value returned from the getTile is the same as the grid position.
-		expect(board.getTile(1, 2)).to.equal(board.grid[1][2]);
+		// Check that the value returned from the getTileValue is the same as the grid position.
+		expect(board.getTileValue(1, 2)).to.equal(board.grid[1][2]);
 
 		done();
 	});

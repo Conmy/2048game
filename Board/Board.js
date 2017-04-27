@@ -28,12 +28,12 @@ function Board (w, h, x, y) {
 		textSize(60);
 		for (var i = 0; i < this.x; i++) {
 			for (var j = 0; j < this.y; j++) {
-				if (this.getTile(i,j) !== undefined) {
-					fill(steps[this.grid[i][j]]);
+				if (this.getTileValue(i,j) !== undefined) {
+					fill(steps[this.getTileValue(i,j)]);
 					rect(this.tileWidth*i, this.tileHeight*j, this.tileWidth, this.tileHeight);
 					textAlign(CENTER, CENTER);	
 					fill(20);
-					text(this.grid[i][j].toString(), i*this.tileWidth, j*this.tileHeight, this.tileWidth, this.tileHeight);
+					text(this.getTileValue(i, j).toString(), i*this.tileWidth, j*this.tileHeight, this.tileWidth, this.tileHeight);
 				}
 				else{
 					fill(220);
@@ -43,7 +43,7 @@ function Board (w, h, x, y) {
 		}
 	};
 
-	this.getTileColorValue = function (value) {
+	this.getTileValueColorValue = function (value) {
 		return steps[value];
 	};
 
@@ -63,8 +63,8 @@ function Board (w, h, x, y) {
 			
 			// Scan the row backwards for values and add to the temp array.
 			for (i = this.x-1; i >= 0; i--) {
-				if (this.grid[i][j] !== undefined) {
-					values.push(this.grid[i][j]);
+				if (this.getTileValue(i, j) !== undefined) {
+					values.push(this.getTileValue(i,j));
 				}
 			}
 
@@ -81,17 +81,17 @@ function Board (w, h, x, y) {
 
 			// Check for touching equal values and sum these together.
 			for (i = this.x-1; i >= 0; i--) {
-				if (this.grid[i][j] === undefined) {
+				if (this.getTileValue(i, j) === undefined) {
 					// Exit clause if there are no values in the row and move on.
 					continue;
 				}
-				else if( i > 0 && this.grid[i][j] === this.grid[i-1][j]) {
-					values.push(this.grid[i][j] + this.grid[i-1][j]);
+				else if( i > 0 && this.getTileValue(i, j) === this.getTileValue(i-1, j)) {
+					values.push(this.getTileValue(i, j) + this.getTileValue(i-1, j));
 					// Skip the value we just added to the current value.
 					i--;
 				}
 				else {
-					values.push(this.grid[i][j]);
+					values.push(this.getTileValue(i, j));
 				}
 			}
 
@@ -114,8 +114,8 @@ function Board (w, h, x, y) {
 		for (j = 0; j < this.y; j++) {
 			var values = [];
 			for (i = 0; i < this.x; i++) {
-				if (this.grid[i][j] !== undefined) {
-					values.push(this.grid[i][j]);
+				if (this.getTileValue(i, j) !== undefined) {
+					values.push(this.getTileValue(i, j));
 				}
 			}
 
@@ -129,17 +129,17 @@ function Board (w, h, x, y) {
 			}
 
 			for (i = 0; i < this.x; i++) {
-				if (this.grid[i][j] === undefined) {
+				if (this.getTileValue(i, j) === undefined) {
 					// Exit clause if there are no values in the row and move on.
 					continue;
 				}
-				else if( i < this.x-1 && this.grid[i][j] === this.grid[i+1][j]) {
-					values.push(this.grid[i][j] + this.grid[i+1][j]);
+				else if( i < this.x-1 && this.getTileValue(i, j) === this.getTileValue(i+1, j)) {
+					values.push(this.getTileValue(i, j) + this.getTileValue(i+1, j));
 					// Skip the value we just added to the current value.
 					i++;
 				}
 				else {
-					values.push(this.grid[i][j]);
+					values.push(this.getTileValue(i, j));
 				}
 			}
 
@@ -160,8 +160,8 @@ function Board (w, h, x, y) {
 		for (i = 0; i < this.x; i++) {
 			var values = [];
 			for (j = this.y - 1; j >= 0; j--) {
-				if (this.grid[i][j] !== undefined) {
-					values.push(this.grid[i][j]);
+				if (this.getTileValue(i, j) !== undefined) {
+					values.push(this.getTileValue(i, j));
 				}
 			}
 
@@ -176,17 +176,17 @@ function Board (w, h, x, y) {
 
 			// Check for touching equal values and sum these together.
 			for (j = this.y - 1; j >= 0; j--) {
-				if (this.grid[i][j] === undefined) {
+				if (this.getTileValue(i, j) === undefined) {
 					// Exit clause if there are no values in the row and move on.
 					continue;
 				}
-				else if( j > 0 && this.grid[i][j] === this.grid[i][j-1]) {
-					values.push(this.grid[i][j] + this.grid[i][j-1]);
+				else if( j > 0 && this.getTileValue(i, j) === this.getTileValue(i, j-1)) {
+					values.push(this.getTileValue(i, j) + this.getTileValue(i, j-1));
 					// Skip the value we just added to the current value.
 					j--;
 				}
 				else {
-					values.push(this.grid[i][j]);
+					values.push(this.getTileValue(i, j));
 				}
 			}
 
@@ -208,8 +208,8 @@ function Board (w, h, x, y) {
 		for (i = 0; i < this.x; i++) {
 			var values = [];
 			for (j = 0; j < this.y; j ++) {
-				if (this.grid[i][j] !== undefined) {
-					values.push(this.grid[i][j]);
+				if (this.getTileValue(i, j) !== undefined) {
+					values.push(this.getTileValue(i, j));
 				}
 			}
 
@@ -223,17 +223,17 @@ function Board (w, h, x, y) {
 			}
 
 			for (j = 0; j < this.y; j ++) {
-				if (this.grid[i][j] === undefined) {
+				if (this.getTileValue(i, j) === undefined) {
 					// Exit clause if there are no values in the row and move on.
 					continue;
 				}
-				else if( j < this.y-1 && this.grid[i][j] === this.grid[i][j+1]) {
-					values.push(this.grid[i][j] + this.grid[i][j+1]);
+				else if( j < this.y-1 && this.getTileValue(i, j) === this.getTileValue(i, j+1)) {
+					values.push(this.getTileValue(i, j) + this.getTileValue(i, j+1));
 					// Skip the value we just added to the current value.
 					j++;
 				}
 				else {
-					values.push(this.grid[i][j]);
+					values.push(this.getTileValue(i, j));
 				}
 			}
 
@@ -248,34 +248,30 @@ function Board (w, h, x, y) {
 		}
 	};
 
-	this.getTile = function (x, y) {
+	this.getTileValue = function (x, y) {
 		return this.grid[x][y];
 	};
 
 	this.getEmptySquarePosition = function () {
 		var position = [0, 0];
-		var checkedVals = [];
 		var found = false;
 		while (!found) {
 			position[0] = Math.floor(Math.random() * (this.grid.length));
 			position[1] = Math.floor(Math.random() * (this.grid.length));
 
-			if (this.grid[position[0], position[1]] !== undefined) {
+			if (this.getTileValue(position[0], position[1]) === undefined) {
 				found = true;
 				return position;
-			}
-			else {
-				checkedVals.push(position);
 			}
 		}
 	};
 
 	this.getMaxTileValue = function() {
 		var max = 0;
-		for (var j=0; j<board.y; j++){
-			for (var i=0; i<board.x; i++) {
-				if (board.grid[i][j] > max) {
-					max = board.grid[i][j];
+		for (var j=0; j<this.y; j++){
+			for (var i=0; i<this.x; i++) {
+				if (this.getTileValue(i, j) > max) {
+					max = this.getTileValue(i, j);
 				}
 			}
 		}
