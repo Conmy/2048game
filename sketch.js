@@ -13,7 +13,7 @@ function getRandomInt(min, max) {
 function setup () {
 	createCanvas(600, 600);
 	board = new Board(600, 600, 3, 3);
-	board.addTile(this.getRandomInt(0, 3), this.getRandomInt(0, 3), 2);
+	board.addTile(this.getRandomInt(0, 3), this.getRandomInt(0, 3), 16);
 }
 
 function draw () {

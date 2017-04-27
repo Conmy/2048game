@@ -22,10 +22,10 @@ function Board (w, h, x, y) {
 				fill(220);
 				rect(this.tileWidth*i, this.tileHeight*j, this.tileWidth, this.tileHeight);
 				
-				if (this.getTile(i,j) == 2) {
+				if (this.getTile(i,j) !== undefined) {
 					textAlign(CENTER, CENTER);	
 					fill(10);
-					text("2", i*this.tileWidth, j*this.tileHeight, this.tileWidth, this.tileHeight);
+					text(this.grid[i][j].toString(), i*this.tileWidth, j*this.tileHeight, this.tileWidth, this.tileHeight);
 				}
 			}
 		}
@@ -46,12 +46,42 @@ function Board (w, h, x, y) {
 		for (j = 0; j < this.y; j++) {
 			var values = [];
 			
+			// Scan the row backwards for values and add to the temp array.
 			for (i = this.x-1; i >= 0; i--) {
 				if (this.grid[i][j] !== undefined) {
 					values.push(this.grid[i][j]);
 				}
 			}
 
+			// Pop the values out into the array one after the other until there are none left.
+			// Then add undefined values to fill out the array.
+			for (i = 0; i < this.x; i++) {
+				if (values.length > 0) {
+					this.grid[i][j] = values.pop();
+				}
+				else {
+					this.grid[i][j] = undefined;
+				}
+			}
+
+			// Check for touching equal values and sum these together.
+			for (i = this.x-1; i >= 0; i--) {
+				if (this.grid[i][j] === undefined) {
+					// Exit clause if there are no values in the row and move on.
+					continue;
+				}
+				else if( i > 0 && this.grid[i][j] === this.grid[i-1][j]) {
+					values.push(this.grid[i][j] + this.grid[i-1][j]);
+					// Skip the value we just added to the current value.
+					i--;
+				}
+				else {
+					values.push(this.grid[i][j]);
+				}
+			}
+
+			// Pop the values out into the array one after the other until there are none left.
+			// Then add undefined values to fill out the array.
 			for (i = 0; i < this.x; i++) {
 				if (values.length > 0) {
 					this.grid[i][j] = values.pop();
