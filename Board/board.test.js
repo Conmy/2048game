@@ -45,6 +45,17 @@ describe('Board tests', function() {
 		done();
 	});
 
+	it("Should be able to retrieve a tile from a grid position", function(done) {
+
+		board.addTile(1, 2, 16);
+		board.addTile(0, 3, 4);
+
+		// Check that the value returned from the getTile is the same as the grid position.
+		expect(board.getTile(1, 2)).to.equal(board.grid[1][2]);
+
+		done();
+	});
+
 	it('Should move all tiles to the left when moveLeft is called.', function (done) {
 
 		board.addTile(1, 0, 2);
@@ -157,6 +168,22 @@ describe('Board tests', function() {
 		expect(board.grid[2][4]).to.equal(16);
 		expect(board.grid[2][5]).to.equal(2);
 
+
+		done();
+	});
+
+	it('Should combine and sum touching tiles with the same value after moving LEFT', function (done) {
+		board.addTile(0, 1, 2);
+		board.addTile(1, 1, 2);
+
+
+		board.moveLeft();
+
+		expect(board.grid[0][1]).to.equal(4);
+		expect(board.grid[1][1]).to.equal(undefined);
+		expect(board.grid[2][1]).to.equal(undefined);
+		expect(board.grid[3][1]).to.equal(undefined);
+		expect(board.grid[4][1]).to.equal(undefined);
 
 		done();
 	});
