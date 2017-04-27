@@ -11,12 +11,15 @@ function getRandomInt(min, max) {
 }
 
 function setup () {
-	createCanvas(w+10, h+10);
+	var canvas = createCanvas(w+10, h+10);
 	board = new Board(w, h, 3, 3);
 	board.addTile(0, 0, 2);
 	board.addTile(0, 2, 2);
 	board.addTile(1, 2, 4);
-	//board.addTile(this.getRandomInt(0, 3), this.getRandomInt(0, 3), 16);
+	
+	// Set the parent element of the game. This will allow to add other
+	// elements of the web page around the game.
+	canvas.parent("content");
 }
 
 function draw () {
