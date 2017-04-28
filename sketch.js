@@ -23,6 +23,7 @@ function setup () {
 }
 
 function draw () {
+	//board.update();
 	// background(0);
 	board.show();
 }

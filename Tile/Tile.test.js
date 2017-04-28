@@ -5,7 +5,7 @@ var Tile = require('./Tile').Tile;
 describe('Tile Object', function() {
 
 	beforeEach(function () {
-		tile = new Tile(2, 1, 100, 32);
+		tile = new Tile(1, 2, 100, 32);
 	});
 
 	it('Should construct an object', function(done){
@@ -17,8 +17,8 @@ describe('Tile Object', function() {
 		expect(tile.posX).to.exist;
 		expect(tile.posY).to.exist;
 
-		expect(tile.posX).to.equal(2);
-		expect(tile.posY).to.equal(1);
+		expect(tile.posX).to.equal(1);
+		expect(tile.posY).to.equal(2);
 
 		done();
 	});
@@ -27,8 +27,8 @@ describe('Tile Object', function() {
 		expect(tile.locX).to.exist;
 		expect(tile.locY).to.exist;
 
-		expect(tile.locX).to.equal(200);
-		expect(tile.locY).to.equal(100);
+		expect(tile.locX).to.equal(100);
+		expect(tile.locY).to.equal(200);
 
 		done();
 	});
@@ -62,4 +62,18 @@ describe('Value functions', function() {
 		done();
 	});
 
+});
+
+describe('Update Tile', function(){
+	beforeEach(function() {
+		tile = new Tile(1, 2, 100, 32);
+	});
+
+	it('Should update the location of the tile at a given step interval', function(done) {
+
+		expect(tile.locX).to.be.equal(100);
+		tile.update();
+		expect(tile.locX).to.be.equal(150);
+
+	});
 });
