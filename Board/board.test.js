@@ -1,5 +1,4 @@
 var expect = require('chai').expect;
-
 var Board = require('./Board.js').Board;
 
 describe('Board General Tests', function() {

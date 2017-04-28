@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var Tile = require('Tile').Tile;
+var Tile = require('./Tile').Tile;
 
 
 describe('Tile Object', function() {

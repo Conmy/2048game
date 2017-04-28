@@ -1,4 +1,4 @@
-function Tile(posX, posY, w) {
+function Tile (posX, posY, w) {
 	this.posX = posX;
 	this.posY = posY;
 
@@ -7,3 +7,4 @@ function Tile(posX, posY, w) {
 	this.locX = this.posX*w;
 	this.locY = this.posY*w;
 }
+module.exports.Tile = Tile;
