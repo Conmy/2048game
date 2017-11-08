@@ -1,0 +1,16 @@
+{
+  "name": "2048game",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.wdf.sap.corp:i059151/2048game.git"
+  },
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
