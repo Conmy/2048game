@@ -5,7 +5,11 @@ var steps = {
 	16: "green",
 	32: "blue",
 	64: "indigo",
-	128: "violet"
+	128: "violet",
+	256: "red",
+	512: "orange",
+	1024: "yellow",
+	2048: "green"
 };
 
 function Board (w, h, x, y) {
