@@ -18,4 +18,4 @@ Then run an individual test by calling the node script that will run mocha
 
 `npm test <path to the test file>`
 
-__Note:__ `test` in the command here is a reference to the script `test` in `package.json`. If mocha was installed globally, you could run `mocha <path to the test file`
+__Note:__ `test` in the command here is a reference to the script `test` in `package.json`. If mocha was installed globally, you could run `mocha <path to the test file>`
