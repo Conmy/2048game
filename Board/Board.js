@@ -281,6 +281,21 @@ function Board (w, h, x, y) {
 		}
 
 		return max;
-	}
+	};
+
+	this.doNextMove = function () {
+
+		if (board.getMaxTileValue() < 2048) {
+			var pos = board.getEmptySquarePosition();
+			board.addTile(pos[0], pos[1], board.getNextTileValue());
+		}
+		else {
+			// WIN Condition.
+		}
+	};
+
+	this.getNextTileValue = function() {
+		return 2;
+	};
 }
 module.exports.Board = Board;

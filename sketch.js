@@ -31,32 +31,18 @@ function draw () {
 function keyPressed () {
 	if (keyCode === RIGHT_ARROW) {
 		board.moveRight();
-		var pos = board.getEmptySquarePosition();
-		this.doNextMode(pos[0], pos[1]);
+		board.doNextMove();
 	}
 	else if (keyCode === LEFT_ARROW) {
 		board.moveLeft();
-		var pos = board.getEmptySquarePosition();
-		this.doNextMode(pos[0], pos[1]);	
+		board.doNextMode();	
 	}
 	else if (keyCode === UP_ARROW) {
 		board.moveUp();
-		var pos = board.getEmptySquarePosition();
-		this.doNextMode(pos[0], pos[1]);
+		board.doNextMove();
 	}
 	else if (keyCode === DOWN_ARROW) {
 		board.moveDown();
-		var pos = board.getEmptySquarePosition();
-		this.doNextMode(pos[0], pos[1]);
-	}
-}
-
-function doNextMove (nextX, nextY) {
-
-	if (board.getMaxTileValue() < 2048) {
-		board.addTile(nextX, nextY, board.getMaxTileValue());
-	}
-	else {
-		// WIN Condition.
+		board.doNextMove();
 	}
 }

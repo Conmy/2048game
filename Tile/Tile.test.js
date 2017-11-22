@@ -23,7 +23,7 @@ describe('Tile Object', function() {
 		done();
 	});
 
-	it('Sould have location elements with values calculated from the constructor', function(done){
+	it('Should have location elements with values calculated from the constructor', function(done){
 		expect(tile.locX).to.exist;
 		expect(tile.locY).to.exist;
 

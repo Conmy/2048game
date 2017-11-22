@@ -330,3 +330,48 @@ describe('getMaxTileValue public function', function() {
 	});
 
 });
+
+describe('getNextTileValue public function', function() {
+	beforeEach(function () {
+		board = new Board (500, 600, 5, 6);
+		board.addTile(0, 0, 2);
+		board.addTile(0, 1, 2);
+	});
+
+	it('Should return the lowest value for the board normally', function(done) {
+		var value = board.getNextTileValue();
+		
+		expect(value).to.equal(2);
+
+		done();
+	});
+});
+
+describe('doNextMove public function', function() {
+	beforeEach(function () {
+		board = new Board (500, 600, 5, 6);
+		board.addTile(0, 0, 2);
+		board.addTile(0, 1, 4);
+	});
+
+	it('Should increase the number of tiles on the board by one', function(done) {
+		
+		board.doNextMove();
+
+		var count = 0;
+		for (var i=0; i<board.y; i++) {
+			var grid = board.grid[i];
+			for (var j=0; j<board.x; j++) {
+				if (grid != undefined && grid[j] != undefined)
+				{
+					// Assume, for now, that it's a tile.
+					count = count + 1;  
+				}	
+			}
+		}
+
+		expect(count).to.equal(3);
+
+		done();
+	});
+});
